@@ -2708,31 +2708,44 @@ ul {
 }
 
 @media (max-width: 768px) {
-    .mentor-card {
-        flex-direction: column;
-        text-align: center;
-    }
-    .tips-grid, .tools-grid {
-        grid-template-columns: 1fr;
-    }
-    .harvest-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .style-options {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .repair-result-grid {
-        grid-template-columns: 1fr;
-    }
-    .generator-card {
-        padding: var(--space-6);
-    }
-    .timeline {
-        padding-left: 30px;
-    }
+    body { font-size: 16px; }
+    .container { padding: 0 16px; }
+    .hero-carousel { height: 300px; }
+    .carousel-slide-title { font-size: 1.2rem; bottom: 20px; left: 20px; right: 20px; }
+    .carousel-slide-desc { font-size: 0.9rem; }
+    .carousel-arrow { width: 36px; height: 36px; font-size: 20px; }
+    .carousel-prev { left: 8px; }
+    .carousel-next { right: 8px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stat-card { padding: 20px 12px; }
+    .stat-number { font-size: 2rem; }
+    .video-wrapper { max-width: 100%; border-radius: 12px; }
+    .video-section { padding: 30px 0; }
+    .section-title { font-size: 1.5rem; }
+    .mentor-card { flex-direction: column; text-align: center; padding: 24px 16px; }
+    .mentor-avatar { width: 80px; height: 80px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .team-member-card { padding: 16px 8px; }
+    .team-member-avatar { width: 60px; height: 60px; font-size: 1.25rem; }
+    .tips-grid, .tools-grid { grid-template-columns: 1fr; gap: 16px; }
+    .harvest-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .style-options { grid-template-columns: repeat(2, 1fr); }
+    .repair-result-grid { grid-template-columns: 1fr; }
+    .generator-card { padding: 20px 16px; }
+    .timeline { padding-left: 30px; }
+    .page-header { height: 40vh; min-height: 250px; }
+    .page-header .container { left: 16px; bottom: 20px; }
+    .page-title { font-size: 1.75rem; }
+    .page-subtitle { font-size: 0.9rem; }
+    .footer-content { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-right { text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .harvest-grid { grid-template-columns: repeat(1, 1fr); }
 }
 
 /* ========== 视频区域 ========== */
