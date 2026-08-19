@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>浮山暖阳 · 首页</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+@media (max-width: 768px) {
+    .nav-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px; box-shadow: 0 4px 16px rgba(0,0,0,.1); gap: 8px; z-index: 1000; }
+    .nav-menu.active { display: flex; }
+    .hamburger { display: flex !important; position: relative; z-index: 1001; }
+    .hamburger span { background: #333; display: block; }
+}
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="home-page">

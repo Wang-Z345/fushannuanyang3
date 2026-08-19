@@ -6,6 +6,13 @@
     <title>AI小测验 · 浮山暖阳</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+/* 手机端导航修复 */
+@media (max-width: 768px) {
+    .nav-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px; box-shadow: 0 4px 16px rgba(0,0,0,.1); gap: 8px; z-index: 1000; }
+    .nav-menu.active { display: flex; }
+    .hamburger { display: flex !important; position: relative; z-index: 1001; }
+    .hamburger span { background: #333; display: block; }
+}
 .quiz-icon{font-size:5rem;margin-bottom:20px}
 .quiz-main{margin-bottom:24px}
 .progress-text{text-align:right;margin-top:12px;font-size:.9rem;color:#8B95A5}

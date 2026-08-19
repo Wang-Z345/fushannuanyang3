@@ -6,6 +6,13 @@
     <title>实践总结 · 浮山暖阳</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+/* 手机端导航修复 */
+@media (max-width: 768px) {
+    .nav-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px; box-shadow: 0 4px 16px rgba(0,0,0,.1); gap: 8px; z-index: 1000; }
+    .nav-menu.active { display: flex; }
+    .hamburger { display: flex !important; position: relative; z-index: 1001; }
+    .hamburger span { background: #333; display: block; }
+}
 .summary-card{max-width:900px;margin:0 auto;background:#fff;border-radius:24px;padding:48px;box-shadow:0 2px 8px rgba(0,0,0,.04);line-height:2}
 .summary-card p{margin-bottom:20px;text-indent:2em}
 .timeline-section{margin-top:64px;margin-bottom:64px}
