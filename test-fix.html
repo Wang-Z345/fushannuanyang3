@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队介绍 - 修复测试</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 强制覆盖成员卡片样式 */
+        .member-card {
+            height: auto !important;
+            min-height: 160px !important;
+            overflow: visible !important;
+        }
+        
+        .member-card-inner {
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 160px !important;
+            transform: none !important;
+        }
+        
+        .member-front, .member-back {
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 160px !important;
+            backface-visibility: visible !important;
+        }
+        
+        .member-back {
+            display: none !important;
+        }
+        
+        .member-avatar {
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 0.9rem !important;
+        }
+        
+        .member-front h4 {
+            font-size: 0.85rem !important;
+            margin-bottom: 4px !important;
+        }
+        
+        .member-role {
+            font-size: 0.75rem !important;
+        }
+        
+        .member-tag {
+            font-size: 0.65rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>团队成员卡片修复测试</h1>
+        <p>如果修复成功，卡片应该显示姓名和完整内容。</p>
+        
+        <div id="test-cards"></div>
+    </div>
+    
+    <script>
+        // 渲染测试卡片
+        const members = [
+            { name: '王宇飞', role: '领队', grade: '2024级' },
+            { name: '刘子怡', role: '活动联系人', grade: '2025级' },
+            { name: '葛轩辰', role: '活动联系人', grade: '2024级' }
+        ];
+        
+        const container = document.getElementById('test-cards');
+        let html = '';
+        
+        members.forEach(member => {
+            const firstChar = member.name.charAt(0);
+            html += `
+                <div class="member-card">
+                    <div class="member-card-inner">
+                        <div class="member-front">
+                            <div class="member-avatar">${firstChar}</div>
+                            <h4>${member.name}</h4>
+                            <p class="member-role">${member.role}</p>
+                            <div class="member-tags">
+                                <span class="member-tag">${member.grade}</span>
+                                <span class="member-tag">计算机学院</span>
+                            </div>
+                        </div>
+                        <div class="member-back">
+                            <h4>${member.name}</h4>
+                            <p>描述信息</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+        
+        // 检查结果
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.member-card');
+            const firstCard = cards[0];
+            const firstFront = firstCard.querySelector('.member-front');
+            const firstH4 = firstFront.querySelector('h4');
+            
+            const result = {
+                cardsCount: cards.length,
+                cardHeight: window.getComputedStyle(firstCard).height,
+                frontPosition: window.getComputedStyle(firstFront).position,
+                frontHeight: window.getComputedStyle(firstFront).height,
+                nameText: firstH4.textContent,
+                nameVisible: firstH4.offsetHeight > 0,
+                viewportWidth: window.innerWidth
+            };
+            
+            console.log('Test result:', result);
+            document.body.innerHTML += '<pre>' + JSON.stringify(result, null, 2) + '</pre>';
+        }, 100);
+    </script>
+</body>
+</html>
