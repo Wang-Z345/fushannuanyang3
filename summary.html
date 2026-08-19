@@ -62,7 +62,7 @@
                 <li><a href="quiz.html" class="nav-link">AI小测验</a></li>
                 <li><a href="summary.html" class="nav-link active">实践总结</a></li>
             </ul>
-            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <div class="hamburger" id="hamburger" onclick="document.getElementById('hamburger').classList.toggle('active');document.getElementById('navMenu').classList.toggle('active');event.stopPropagation()">
                 <span></span>
                 <span></span>
                 <span></span>
