@@ -2683,7 +2683,8 @@ ul {
     .nav-link { padding: 12px 16px; font-size: 1rem; width: 100%; border-radius: 8px; }
     .nav-link.active::after { display: none; }
     .nav-link.active { background: var(--color-primary-lighter); }
-    .hamburger { display: flex; }
+    .hamburger { display: flex !important; position: relative; z-index: 1001; cursor: pointer; }
+    .hamburger span { display: block; background: #333; }
     
     /* 轮播图 */
     .hero-carousel { height: 300px; }
