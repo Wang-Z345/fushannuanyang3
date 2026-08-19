@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队介绍 · 浮山暖阳</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+.mentor-card{display:flex;gap:24px;align-items:center;background:#fff;padding:40px;border-radius:24px;max-width:800px;margin:0 auto 60px}
+.mentor-avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#FF7A45,#3CB8A9);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mentor-avatar svg{width:60px;height:60px}
+.mentor-info h3{font-size:1.75rem;margin-bottom:8px}
+.mentor-title{color:#FF7A45;font-weight:600;margin-bottom:12px}
+.mentor-desc{color:#4A5568;line-height:1.8}
+.team-group-photo{width:100%;max-width:900px;margin:0 auto 60px;border-radius:24px;overflow:hidden;aspect-ratio:16/9;background:#EEF0F3}
+.team-group-photo img{width:100%;height:100%;object-fit:cover}
+.group-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8B95A5;gap:12px;font-size:3rem}
+.group-photo-placeholder p{font-size:1rem}
+.member-group{margin-bottom:12px}
+.member-group-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#fff;border-radius:12px;cursor:pointer;user-select:none}
+.member-group-header:hover{background:#FFFAF7}
+.group-left{display:flex;align-items:center;gap:12px}
+.group-icon{font-size:1.5rem}
+.group-left h4{font-size:1.1rem;margin:0}
+.group-count{color:#8B95A5;font-size:.85rem;margin-left:6px}
+.group-arrow{font-size:1.1rem;color:#8B95A5;transition:transform .3s ease}
+.member-group.collapsed .group-arrow{transform:rotate(180deg)}
+.member-group.collapsed .member-group-content{display:none}
+.member-group-content{padding:12px}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.member-card{perspective:1000px;height:340px}
+.member-card-inner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.member-card:hover .member-card-inner{transform:rotateY(180deg)}
+.member-front,.member-back{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:16px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.member-front{background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.member-back{background:linear-gradient(135deg,#FF7A45,#3CB8A9);color:#fff;transform:rotateY(180deg)}
+.member-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#FF7A45,#3CB8A9);color:#fff;font-size:2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0}
+.member-front h4{font-size:1.25rem;margin-bottom:8px;color:#1A1D23}
+.member-role{color:#FF7A45;font-size:1rem;font-weight:600;margin-bottom:14px}
+.member-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.member-tag{padding:6px 12px;background:#F7F8FA;border-radius:9999px;font-size:.85rem;color:#8B95A5}
+.member-back h4{color:#fff;font-size:1.25rem;margin-bottom:14px}
+.member-back p{color:#fff;font-size:1rem;line-height:1.7}
+.expand-all-wrap{text-align:center;margin-top:32px}
+.expand-all-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:.95rem;color:#FF7A45;background:#FFF1EB;border-radius:9999px;cursor:pointer;border:none}
+.gallery-section{margin-bottom:80px}
+.page-header{height:66.67vh;min-height:500px;background-size:cover;background-position:center;position:relative;margin:0;margin-top:68px;display:block!important;align-items:unset!important;justify-content:unset!important;text-align:left!important}
+.page-header::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,0.6) 100%)!important;top:0!important;right:0!important;width:100%!important;height:100%!important;border-radius:0!important}
+.page-header::after{display:none!important}
+.page-header .container{position:absolute!important;z-index:1!important;text-align:left!important;left:80px!important;bottom:72px!important;max-width:none!important;width:auto!important;margin:0!important;padding:0!important}
+.page-title{color:#fff;font-size:3rem;font-weight:700;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.page-subtitle{color:#fff;opacity:.9;font-size:1.15rem;margin:0;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">浮山暖阳</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="practice.html" class="nav-link">实践风采</a></li>
+                <li><a href="team.html" class="nav-link active">团队介绍</a></li>
+                <li><a href="ai.html" class="nav-link">AI技巧库</a></li>
+                <li><a href="quiz.html" class="nav-link">AI小测验</a></li>
+                <li><a href="summary.html" class="nav-link">实践总结</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <div class="page-header" style="background-image:url('images/team.jpg.jpg');">
+        <div class="container">
+            <h1 class="page-title">团队介绍</h1>
+            <p class="page-subtitle">青岛大学计算机科学技术学院"浮山暖阳"社会实践团</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 指导老师 -->
+        <div class="mentor-section reveal">
+            <h2 class="section-title">指导老师</h2>
+            <div class="title-line-wrap"><span class="title-line"></span></div>
+            <div class="mentor-card">
+                <div class="mentor-avatar">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <div class="mentor-info">
+                    <h3>刘鹏伟</h3>
+                    <p class="mentor-title">计算机科学技术学院团委负责人、辅导员</p>
+                    <p class="mentor-desc">
+                        担任"浮山暖阳"社会实践团指导老师，统筹团队实践工作，
+                        指导团队开展AI科普、科技志愿服务等活动，
+                        推动学生将专业知识转化为社会服务能力。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 团队成员 -->
+        <div class="members-section reveal">
+            <h2 class="section-title">团队成员</h2>
+            <div class="title-line-wrap"><span class="title-line"></span></div>
+            <p class="section-subtitle">25位优秀的青年学子，用科技服务社会</p>
+
+            <!-- 团队集体照 -->
+            <div class="team-group-photo">
+                <img src="images/group/所有场景合影/出征.jpg" alt="团队集体照" onerror="this.style.display='none'">
+                <div class="group-photo-placeholder" style="display:none;">
+                    <span>📷</span>
+                    <p>团队集体合影</p>
+                </div>
+            </div>
+
+            <!-- 成员分组（可折叠） -->
+            <div class="member-groups">
+                <div class="member-group" data-group="leader">
+                    <div class="member-group-header" onclick="toggleGroup('leader')">
+                        <div class="group-left">
+                            <span class="group-icon">👑</span>
+                            <h4>领队</h4>
+                            <span class="group-count">1人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-leader"></div>
+                    </div>
+                </div>
+
+                <div class="member-group" data-group="contacts">
+                    <div class="member-group-header" onclick="toggleGroup('contacts')">
+                        <div class="group-left">
+                            <span class="group-icon">📋</span>
+                            <h4>活动联系人</h4>
+                            <span class="group-count">3人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-contacts"></div>
+                    </div>
+                </div>
+
+                <div class="member-group" data-group="tech">
+                    <div class="member-group-header" onclick="toggleGroup('tech')">
+                        <div class="group-left">
+                            <span class="group-icon">💻</span>
+                            <h4>技术负责人</h4>
+                            <span class="group-count">3人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-tech"></div>
+                    </div>
+                </div>
+
+                <div class="member-group" data-group="speakers">
+                    <div class="member-group-header" onclick="toggleGroup('speakers')">
+                        <div class="group-left">
+                            <span class="group-icon">🎤</span>
+                            <h4>宣讲与科普</h4>
+                            <span class="group-count">6人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-speakers"></div>
+                    </div>
+                </div>
+
+                <div class="member-group" data-group="media">
+                    <div class="member-group-header" onclick="toggleGroup('media')">
+                        <div class="group-left">
+                            <span class="group-icon">📸</span>
+                            <h4>宣传组</h4>
+                            <span class="group-count">4人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-media"></div>
+                    </div>
+                </div>
+
+                <div class="member-group" data-group="research">
+                    <div class="member-group-header" onclick="toggleGroup('research')">
+                        <div class="group-left">
+                            <span class="group-icon">📊</span>
+                            <h4>调研组</h4>
+                            <span class="group-count">3人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-research"></div>
+                    </div>
+                </div>
+
+                <div class="member-group" data-group="safety">
+                    <div class="member-group-header" onclick="toggleGroup('safety')">
+                        <div class="group-left">
+                            <span class="group-icon">🛡️</span>
+                            <h4>安全员</h4>
+                            <span class="group-count">3人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-safety"></div>
+                    </div>
+                </div>
+
+                <div class="member-group" data-group="logistics">
+                    <div class="member-group-header" onclick="toggleGroup('logistics')">
+                        <div class="group-left">
+                            <span class="group-icon">📦</span>
+                            <h4>后勤组</h4>
+                            <span class="group-count">2人</span>
+                        </div>
+                        <span class="group-arrow">▾</span>
+                    </div>
+                    <div class="member-group-content">
+                        <div class="team-grid" id="team-logistics"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expand-all-wrap">
+                <button class="expand-all-btn" onclick="toggleAllGroups()">
+                    <span id="expandAllIcon">⤵</span>
+                    <span id="expandAllText">展开全部分组</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 合影相册 -->
+        <div class="gallery-section reveal">
+            <h2 class="section-title">合影相册</h2>
+            <div class="title-line-wrap"><span class="title-line"></span></div>
+            <p class="section-subtitle">记录每一个珍贵的瞬间</p>
+            <div class="gallery-grid" id="group-photos">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <span class="logo-text">浮山暖阳</span>
+                    </div>
+                    <p>青岛大学计算机科学技术学院<br>2026年暑期"三下乡"社会实践团</p>
+                </div>
+                <div class="footer-right">
+                    <p>投身社会服务 · AI赋能基层惠民</p>
+                    <p class="footer-copyright">© 2026 浮山暖阳实践团</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 照片灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <button class="lightbox-prev" onclick="prevPhoto()">‹</button>
+            <img id="lightbox-img" src="" alt="">
+            <button class="lightbox-next" onclick="nextPhoto()">›</button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script>
+        initTeamMembers();
+        initGroupPhotos();
+    </script>
+</body>
+</html>

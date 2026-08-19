@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI技巧库 · 浮山暖阳</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+.generator-card{max-width:800px;margin:0 auto;background:#fff;border-radius:24px;padding:48px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.generator-row{margin-bottom:24px}
+.generator-row label{display:block;font-weight:600;color:#1A1D23;margin-bottom:12px;font-size:1rem}
+.generator-row select,.generator-row textarea{width:100%;padding:16px;font-size:1rem;border:1px solid #E5E7EB;border-radius:12px;background:#F7F8FA;font-family:inherit;color:#4A5568}
+.generator-row select{cursor:pointer}
+.generator-row textarea{min-height:120px;resize:vertical}
+.style-options{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.style-btn{padding:16px 12px;font-size:.9rem;border:2px solid #E5E7EB;border-radius:12px;background:#F7F8FA;cursor:pointer;transition:all .3s ease;text-align:center;font-family:inherit}
+.style-btn:hover{border-color:#FFE8DC;background:#FFFAF7}
+.style-btn.active{border-color:#FF7A45;background:#FFF1EB;color:#FF7A45;font-weight:600}
+.generate-btn{width:100%;padding:16px;font-size:1rem;font-weight:600;background:linear-gradient(135deg,#FF7A45,#3CB8A9);color:#fff;border-radius:12px;cursor:pointer;border:none;transition:all .3s ease}
+.generate-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,122,69,.4)}
+.generator-result{margin-top:32px;background:#F7F8FA;border-radius:12px;padding:24px}
+.repair-section{background:#fff;border-radius:24px;padding:48px 40px;max-width:1100px;margin:0 auto 48px}
+.repair-demo{max-width:750px;margin:0 auto}
+.repair-container{position:relative;width:100%;aspect-ratio:4/3;border-radius:16px;overflow:hidden;user-select:none;background:#EEF0F3}
+.repair-before,.repair-after{position:absolute;top:0;left:0;width:100%;height:100%}
+.repair-before{z-index:2;clip-path:inset(0 50% 0 0)}
+.repair-after{z-index:1}
+.repair-img{width:100%;height:100%;object-fit:cover}
+.repair-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:2.5rem}
+.repair-placeholder.old{background:#f5f0e8;color:#8b7355}
+.repair-placeholder.new{background:#f0f9f8;color:#3CB8A9}
+.repair-placeholder p{font-size:.9rem;font-weight:600;margin:0}
+.repair-placeholder small{font-size:.75rem;opacity:.8}
+.repair-slider{position:absolute;top:0;bottom:0;width:3px;background:#fff;cursor:ew-resize;z-index:10;left:50%;transform:translateX(-50%);box-shadow:0 0 8px rgba(0,0,0,.3)}
+.slider-line{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:3px;background:#fff}
+.slider-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:1px;box-shadow:0 2px 8px rgba(0,0,0,.2);font-size:.7rem;color:#1A1D23}
+.repair-tip{text-align:center;margin-top:12px;color:#8B95A5;font-size:.85rem}
+.repair-upload-section{margin-top:48px;text-align:center;max-width:650px;margin-left:auto;margin-right:auto}
+.repair-upload-title{font-size:1.3rem;margin-bottom:6px}
+.repair-upload-desc{color:#8B95A5;margin-bottom:20px;font-size:.9rem}
+.repair-result{margin-top:24px}
+.repair-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.repair-result-item{text-align:center}
+.result-label{font-weight:600;margin-bottom:8px;font-size:.9rem}
+.result-label.old-label{color:#8b7355}
+.result-label.new-label{color:#3CB8A9}
+.result-img-box{aspect-ratio:4/3;background:#F7F8FA;border-radius:12px;overflow:hidden}
+.result-img-box canvas{width:100%;height:100%;object-fit:contain}
+.repair-actions{display:flex;gap:12px;justify-content:center}
+.btn-outline{background:transparent;color:#4A5568;border:2px solid #E5E7EB}
+.btn-outline:hover{border-color:#FF7A45;color:#FF7A45}
+.upload-area{display:block;padding:56px 32px;border:2px dashed #E5E7EB;border-radius:20px;background:#F7F8FA;cursor:pointer;transition:all .3s ease;text-align:center}
+.upload-area:hover{border-color:#FF7A45;background:#FFFAF7}
+.upload-icon{font-size:3rem;margin-bottom:12px}
+.upload-text{font-weight:600;margin:0 0 8px 0;color:#1A1D23;font-size:1.15rem}
+.upload-hint{color:#8B95A5;font-size:.95rem;margin:0}
+.tips-section{margin-top:64px;margin-bottom:64px}
+.page-header{height:66.67vh;min-height:500px;background-size:cover;background-position:center;position:relative;margin:0;margin-top:68px;display:block!important;align-items:unset!important;justify-content:unset!important;text-align:left!important}
+.page-header::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,0.6) 100%)!important;top:0!important;right:0!important;width:100%!important;height:100%!important;border-radius:0!important}
+.page-header::after{display:none!important}
+.page-header .container{position:absolute!important;z-index:1!important;text-align:left!important;left:80px!important;bottom:72px!important;max-width:none!important;width:auto!important;margin:0!important;padding:0!important}
+.page-title{color:#fff;font-size:3rem;font-weight:700;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.page-subtitle{color:#fff;opacity:.9;font-size:1.15rem;margin:0;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.tip-card{background:#fff;border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .3s ease}
+.tip-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.tip-number{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#FF7A45,#3CB8A9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.tip-card h3{font-size:1.2rem;margin-bottom:12px}
+.tip-card p{color:#8B95A5;line-height:1.8;font-size:.9rem}
+.tools-section{margin-bottom:64px}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1200px;margin:0 auto}
+.tool-card{background:#fff;border-radius:16px;padding:24px 20px;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .3s ease}
+.tool-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.tool-icon{font-size:2.5rem;margin-bottom:12px;text-align:center}
+.tool-card h3{font-size:1.1rem;margin-bottom:12px;text-align:center;color:#1A1D23}
+.tool-card ul{list-style:none;padding:0;margin:0}
+.tool-card li{padding:8px 0;font-size:.85rem;color:#4A5568;border-bottom:1px solid #F0F1F3;line-height:1.4}
+.tool-card li:last-child{border-bottom:none}
+.section-title .title-line{display:none}
+.section-title{margin-bottom:0}
+.title-line-wrap{text-align:center;margin-top:16px}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">浮山暖阳</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="practice.html" class="nav-link">实践风采</a></li>
+                <li><a href="team.html" class="nav-link">团队介绍</a></li>
+                <li><a href="ai.html" class="nav-link active">AI技巧库</a></li>
+                <li><a href="quiz.html" class="nav-link">AI小测验</a></li>
+                <li><a href="summary.html" class="nav-link">实践总结</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <div class="page-header" style="background-image:url('images/ai.jpg.png');">
+        <div class="container">
+            <h1 class="page-title">AI技巧库</h1>
+            <p class="page-subtitle">实用AI工具与技巧，助力学习与工作</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 提示词生成器 -->
+        <div class="prompt-generator-section reveal">
+            <h2 class="section-title">🤖 AI提示词生成器 <span class="title-line"></span></h2>
+            <p class="section-subtitle">选择场景，输入需求，一键生成优质提示词</p>
+            
+            <div class="generator-card">
+                <div class="generator-row">
+                    <label>使用场景</label>
+                    <select id="prompt-scene">
+                        <option value="study">📚 学习辅助</option>
+                        <option value="work">💼 办公效率</option>
+                        <option value="creative">🎨 创意写作</option>
+                        <option value="code">💻 编程开发</option>
+                        <option value="life">🌟 日常生活</option>
+                    </select>
+                </div>
+                <div class="generator-row">
+                    <label>你的需求</label>
+                    <textarea id="prompt-input" placeholder="请描述你想要AI帮你做什么，比如：写一篇关于三下乡的宣传稿"></textarea>
+                </div>
+                <div class="generator-row">
+                    <label>风格要求</label>
+                    <div class="style-options">
+                        <button class="style-btn active" data-style="professional">专业正式</button>
+                        <button class="style-btn" data-style="casual">轻松活泼</button>
+                        <button class="style-btn" data-style="detailed">详细全面</button>
+                        <button class="style-btn" data-style="simple">简洁明了</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary generate-btn" onclick="generatePrompt()">
+                    ✨ 生成提示词
+                </button>
+                <div class="generator-result" id="prompt-result" style="display:none;">
+                    <div class="result-header">
+                        <span>生成结果</span>
+                        <button class="copy-btn" onclick="copyPrompt()">📋 复制</button>
+                    </div>
+                    <div class="result-content" id="result-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 照片修复对比 -->
+        <div class="repair-section reveal">
+            <h2 class="section-title">📷 AI老照片修复 <span class="title-line"></span></h2>
+            <p class="section-subtitle">拖动滑块，感受AI修复的神奇效果</p>
+            
+            <div class="repair-demo">
+                <div class="repair-container" id="repair-container">
+                    <div class="repair-before" id="repair-before">
+                        <img src="images/repair/before.jpg" alt="老照片（修复前）" class="repair-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="repair-placeholder old">
+                            <span>📷</span>
+                            <p>老照片（修复前）</p>
+                            <small>模糊 · 泛黄 · 有划痕</small>
+                        </div>
+                    </div>
+                    <div class="repair-after" id="repair-after">
+                        <img src="images/repair/after.jpg" alt="修复后效果" class="repair-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="repair-placeholder new">
+                            <span>✨</span>
+                            <p>修复后效果</p>
+                            <small>清晰 · 彩色 · 更细腻</small>
+                        </div>
+                    </div>
+                    <div class="repair-slider" id="repair-slider">
+                        <div class="slider-line"></div>
+                        <div class="slider-handle">
+                            <span>◀</span>
+                            <span>▶</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="repair-tip">💡 提示：左右拖动中间的滑块查看对比效果</p>
+            </div>
+
+            <!-- 上传修复功能 -->
+            <div class="repair-upload-section">
+                <h3 class="repair-upload-title">✨ 试试修复你的老照片</h3>
+                <p class="repair-upload-desc">上传一张老照片，体验AI智能修复效果（演示功能）</p>
+                
+                <label class="upload-area" id="uploadArea" for="photoInput">
+                    <input type="file" id="photoInput" accept="image/*" style="display:none;">
+                    <div class="upload-icon">📤</div>
+                    <p class="upload-text">点击或拖拽上传老照片</p>
+                    <p class="upload-hint">支持 JPG、PNG 格式</p>
+                </label>
+
+                <div class="repair-result" id="repairResult" style="display:none;">
+                    <div class="repair-result-grid">
+                        <div class="repair-result-item">
+                            <div class="result-label old-label">修复前</div>
+                            <div class="result-img-box">
+                                <canvas id="beforeCanvas"></canvas>
+                            </div>
+                        </div>
+                        <div class="repair-result-item">
+                            <div class="result-label new-label">修复后</div>
+                            <div class="result-img-box">
+                                <canvas id="afterCanvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="repair-actions">
+                        <button class="btn btn-outline" onclick="resetUpload()">🔄 重新上传</button>
+                        <button class="btn btn-primary" onclick="downloadRepaired()">💾 下载修复图</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示词技巧 -->
+        <div class="tips-section reveal">
+            <h2 class="section-title">💡 提示词优化技巧 <span class="title-line"></span></h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">01</div>
+                    <h3>明确角色</h3>
+                    <p>告诉AI扮演什么角色，如"你是一位资深的文案编辑"</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">02</div>
+                    <h3>描述清晰</h3>
+                    <p>具体说明需求、目标受众、使用场景等信息</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">03</div>
+                    <h3>给出示例</h3>
+                    <p>提供1-2个期望的输出样例，让AI更懂你的风格</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">04</div>
+                    <h3>设定限制</h3>
+                    <p>明确字数、格式、语气等约束条件</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">05</div>
+                    <h3>分步引导</h3>
+                    <p>复杂任务拆分成多步，逐步细化调整</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-number">06</div>
+                    <h3>迭代优化</h3>
+                    <p>不满意就告诉AI哪里不好，让它修改完善</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI工具推荐 -->
+        <div class="tools-section reveal">
+            <h2 class="section-title">🛠️ 实用AI工具推荐 <span class="title-line"></span></h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">💬</div>
+                    <h3>对话类AI</h3>
+                    <ul>
+                        <li>ChatGPT - 通用对话助手</li>
+                        <li>文心一言 - 百度出品</li>
+                        <li>通义千问 - 阿里出品</li>
+                        <li>豆包 - 字节跳动</li>
+                    </ul>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <h3>AI绘画</h3>
+                    <ul>
+                        <li>Midjourney - 高质量绘画</li>
+                        <li>Stable Diffusion - 开源免费</li>
+                        <li>DALL·E - OpenAI出品</li>
+                        <li>文心一格 - 百度出品</li>
+                    </ul>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <h3>办公效率</h3>
+                    <ul>
+                        <li>WPS AI - 文档处理</li>
+                        <li>飞书妙记 - 会议记录</li>
+                        <li>剪映 - 视频剪辑AI</li>
+                        <li>Canva - 设计工具</li>
+                    </ul>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📚</div>
+                    <h3>学习辅助</h3>
+                    <ul>
+                        <li>可汗学院 - 系统学习</li>
+                        <li>Quizlet - 记忆卡片</li>
+                        <li>DeepL - 翻译工具</li>
+                        <li>Grammarly - 语法检查</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <span class="logo-text">浮山暖阳</span>
+                    </div>
+                    <p>青岛大学计算机科学技术学院<br>2026年暑期"三下乡"社会实践团</p>
+                </div>
+                <div class="footer-right">
+                    <p>投身社会服务 · AI赋能基层惠民</p>
+                    <p class="footer-copyright">© 2026 浮山暖阳实践团</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script>
+        initRepairSlider();
+        initStyleButtons();
+    </script>
+</body>
+</html>

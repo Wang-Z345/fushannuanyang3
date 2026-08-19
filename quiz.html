@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI小测验 · 浮山暖阳</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+.quiz-icon{font-size:5rem;margin-bottom:20px}
+.quiz-main{margin-bottom:24px}
+.progress-text{text-align:right;margin-top:12px;font-size:.9rem;color:#8B95A5}
+.result-score{font-size:4rem;font-weight:800;background:linear-gradient(135deg,#FF7A45,#3CB8A9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:16px 0 20px}
+.quiz-container{max-width:1200px;margin:0 auto;background:#fff;border-radius:24px;padding:64px 56px;box-shadow:0 4px 20px rgba(0,0,0,.06);text-align:center}
+.container{max-width:1300px}
+.page-header{height:66.67vh;min-height:500px;background-size:cover;background-position:center;position:relative;margin:0;margin-top:68px;display:block!important;align-items:unset!important;justify-content:unset!important;text-align:left!important}
+.page-header::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,0.6) 100%)!important;top:0!important;right:0!important;width:100%!important;height:100%!important;border-radius:0!important}
+.page-header::after{display:none!important}
+.page-header .container{position:absolute!important;z-index:1!important;text-align:left!important;left:80px!important;bottom:72px!important;max-width:none!important;width:auto!important;margin:0!important;padding:0!important}
+.page-title{color:#fff;font-size:3rem;font-weight:700;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.page-subtitle{color:#fff;opacity:.9;font-size:1.15rem;margin:0;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">浮山暖阳</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="practice.html" class="nav-link">实践风采</a></li>
+                <li><a href="team.html" class="nav-link">团队介绍</a></li>
+                <li><a href="ai.html" class="nav-link">AI技巧库</a></li>
+                <li><a href="quiz.html" class="nav-link active">AI小测验</a></li>
+                <li><a href="summary.html" class="nav-link">实践总结</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <div class="page-header" style="background-image:url('images/quiz.jpg.jpg');">
+        <div class="container">
+            <h1 class="page-title">AI知识小测验</h1>
+            <p class="page-subtitle">测测你的AI知识水平吧！</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="quiz-container reveal">
+            <div class="quiz-start" id="quiz-start">
+                <div class="quiz-icon">🧠</div>
+                <h2>AI知识挑战</h2>
+                <p>共8道题目，涵盖AI基础、反诈知识、网络安全等内容</p>
+                <button class="btn btn-primary" onclick="startQuiz()">开始答题</button>
+            </div>
+            
+            <div class="quiz-main" id="quiz-main" style="display:none;">
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">
+                        第 <span id="current-q">1</span> / 8 题
+                    </div>
+                </div>
+                <div class="quiz-question" id="quiz-question"></div>
+                <div class="quiz-options" id="quiz-options"></div>
+                <div class="quiz-feedback" id="quiz-feedback" style="display:none;"></div>
+                <button class="btn btn-primary next-btn" id="next-btn" style="display:none;" onclick="nextQuestion()">
+                    下一题 →
+                </button>
+            </div>
+            
+            <div class="quiz-result" id="quiz-result" style="display:none;">
+                <div class="result-icon" id="result-icon">🎉</div>
+                <h2 id="result-title">测验完成！</h2>
+                <div class="result-score">
+                    <span id="score-value">0</span> / 8
+                </div>
+                <p id="result-desc"></p>
+                <button class="btn btn-primary" onclick="restartQuiz()">再测一次</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <span class="logo-text">浮山暖阳</span>
+                    </div>
+                    <p>青岛大学计算机科学技术学院<br>2026年暑期"三下乡"社会实践团</p>
+                </div>
+                <div class="footer-right">
+                    <p>投身社会服务 · AI赋能基层惠民</p>
+                    <p class="footer-copyright">© 2026 浮山暖阳实践团</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实践总结 · 浮山暖阳</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+.summary-card{max-width:900px;margin:0 auto;background:#fff;border-radius:24px;padding:48px;box-shadow:0 2px 8px rgba(0,0,0,.04);line-height:2}
+.summary-card p{margin-bottom:20px;text-indent:2em}
+.timeline-section{margin-top:64px;margin-bottom:64px}
+.timeline{max-width:800px;margin:0 auto;position:relative;padding-left:40px}
+.timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:#E5E7EB}
+.timeline-item{position:relative;margin-bottom:32px}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-dot{position:absolute;left:-33px;top:6px;width:16px;height:16px;border-radius:50%;background:#FF7A45;border:4px solid #F7F8FA;z-index:1}
+.timeline-content{background:#fff;padding:24px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.timeline-date{color:#FF7A45;font-weight:600;font-size:.9rem;margin-bottom:8px}
+.timeline-content h3{font-size:1.2rem;margin-bottom:8px}
+.timeline-content p{color:#4A5568;margin:0}
+.harvest-section{margin-bottom:64px}
+.harvest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1200px;margin:0 auto}
+.harvest-card{background:#fff;border-radius:16px;padding:32px 20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .3s ease}
+.harvest-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.harvest-icon{font-size:3rem;margin-bottom:16px}
+.harvest-card h3{font-size:1.15rem;margin-bottom:12px}
+.harvest-card p{color:#8B95A5;line-height:1.8;font-size:.9rem}
+.future-section{margin-bottom:64px}
+.future-card{max-width:900px;margin:0 auto;background:#fff;border-radius:24px;padding:48px;box-shadow:0 2px 8px rgba(0,0,0,.04);line-height:2}
+.future-card p{margin-bottom:20px;text-indent:2em}
+.future-card ul{list-style:none;padding:0;margin-bottom:20px}
+.future-card li{padding:8px 0;padding-left:16px;position:relative}
+.future-quote{text-align:center;font-size:1.25rem;font-weight:600;color:#FF7A45;margin-top:32px!important;text-indent:0!important;font-style:italic}
+.page-header{height:66.67vh;min-height:500px;background-size:cover;background-position:center;position:relative;margin:0;margin-top:68px;display:block!important;align-items:unset!important;justify-content:unset!important;text-align:left!important}
+.page-header::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,0.6) 100%)!important;top:0!important;right:0!important;width:100%!important;height:100%!important;border-radius:0!important}
+.page-header::after{display:none!important}
+.page-header .container{position:absolute!important;z-index:1!important;text-align:left!important;left:80px!important;bottom:72px!important;max-width:none!important;width:auto!important;margin:0!important;padding:0!important}
+.page-title{color:#fff;font-size:3rem;font-weight:700;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.page-subtitle{color:#fff;opacity:.9;font-size:1.15rem;margin:0;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">浮山暖阳</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="practice.html" class="nav-link">实践风采</a></li>
+                <li><a href="team.html" class="nav-link">团队介绍</a></li>
+                <li><a href="ai.html" class="nav-link">AI技巧库</a></li>
+                <li><a href="quiz.html" class="nav-link">AI小测验</a></li>
+                <li><a href="summary.html" class="nav-link active">实践总结</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <div class="page-header" style="background-image:url('images/summary.jpg.jpg');">
+        <div class="container">
+            <h1 class="page-title">实践总结</h1>
+            <p class="page-subtitle">回顾收获，展望未来</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 实践概况 -->
+        <div class="summary-section reveal">
+            <h2 class="section-title">实践概况 <span class="title-line"></span></h2>
+            <div class="summary-card">
+                <p>
+                    青岛大学计算机科学技术学院"浮山暖阳"社会实践团，于2026年7月16日至8月20日期间，
+                    围绕"投身社会服务，AI赋能基层惠民"主题，开展了形式多样的暑期三下乡社会实践活动。
+                </p>
+                <p>
+                    团队由25名本硕学生组成，覆盖计算机科学与技术、软件工程、信息安全、智能科学与技术等专业。
+                    通过集中定点服务与返乡分散实践相结合的方式，在青岛市、临沂市、德州市、吉林省通化市等
+                    多个地区开展了少儿编程、AI反诈、老照片修复、智能办公培训、网络安全科普等10项实践活动，
+                    服务群众200余人次，取得了良好的社会反响。
+                </p>
+            </div>
+        </div>
+
+        <!-- 活动时间线 -->
+        <div class="timeline-section reveal">
+            <h2 class="section-title">活动时间线 <span class="title-line"></span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月15-17日</div>
+                        <h3>青岛东韩馨悦社区</h3>
+                        <p>少儿编程公益课堂，为孩子们带来编程启蒙教育</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月15-16日</div>
+                        <h3>青岛春光山色社区</h3>
+                        <p>少儿编程课程，指导老师刘鹏伟现场指导</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月16-17日</div>
+                        <h3>青岛中海锦年长者公寓</h3>
+                        <p>AI反诈宣讲 + AI老照片修复活动，帮助老年人跨越数字鸿沟</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月27日</div>
+                        <h3>德州武城县振东社区</h3>
+                        <p>"编程启梦·童心同行"少儿编程公益活动</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月27日</div>
+                        <h3>西海岸新区耿家村</h3>
+                        <p>AI智能语音助手公益课堂 + "维C"计算机维修服务</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月28日</div>
+                        <h3>临沂临沭县富民社区</h3>
+                        <p>AI智能办公能力培训，提升基层工作效率</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月下旬</div>
+                        <h3>吉林通化辉南县</h3>
+                        <p>AI协助村委防汛与智能化使用调研</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">8月</div>
+                        <h3>临清市松林镇</h3>
+                        <p>青少年网络安全教育及计算机科普活动</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 收获与感悟 -->
+        <div class="harvest-section reveal">
+            <h2 class="section-title">收获与感悟 <span class="title-line"></span></h2>
+            <div class="harvest-grid">
+                <div class="harvest-card">
+                    <div class="harvest-icon">🎓</div>
+                    <h3>专业能力提升</h3>
+                    <p>将课堂所学的计算机、AI知识应用到实际服务中，锻炼了实践能力和问题解决能力</p>
+                </div>
+                <div class="harvest-card">
+                    <div class="harvest-icon">🤝</div>
+                    <h3>团队协作成长</h3>
+                    <p>25人团队分工协作，从策划到执行，每个人都在团队中找到了自己的位置</p>
+                </div>
+                <div class="harvest-card">
+                    <div class="harvest-icon">❤️</div>
+                    <h3>社会责任感</h3>
+                    <p>深入基层服务群众，真切感受到科技赋能社会的价值，增强了青年担当</p>
+                </div>
+                <div class="harvest-card">
+                    <div class="harvest-icon">🌱</div>
+                    <h3>传播科技种子</h3>
+                    <p>在孩子们心中种下编程的种子，帮助老人享受数字生活，让AI真正惠及大众</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 未来展望 -->
+        <div class="future-section reveal">
+            <h2 class="section-title">未来展望 <span class="title-line"></span></h2>
+            <div class="future-card">
+                <p>
+                    "浮山暖阳"社会实践团将继续发扬"科技惠民、智暖基层"的精神，
+                    持续开展AI科普、科技志愿服务活动。我们希望：
+                </p>
+                <ul>
+                    <li>✨ 扩大服务范围，让更多社区受益</li>
+                    <li>✨ 丰富活动内容，开发更多优质课程</li>
+                    <li>✨ 建立长期合作基地，打造常态化服务品牌</li>
+                    <li>✨ 吸引更多同学加入，壮大志愿服务队伍</li>
+                </ul>
+                <p class="future-quote">
+                    以青春之力，筑科技之桥，让温暖照进更多角落。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <span class="logo-text">浮山暖阳</span>
+                    </div>
+                    <p>青岛大学计算机科学技术学院<br>2026年暑期"三下乡"社会实践团</p>
+                </div>
+                <div class="footer-right">
+                    <p>投身社会服务 · AI赋能基层惠民</p>
+                    <p class="footer-copyright">© 2026 浮山暖阳实践团</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮山暖阳 · 首页</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="home-page">
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">浮山暖阳</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">首页</a></li>
+                <li><a href="practice.html" class="nav-link">实践风采</a></li>
+                <li><a href="team.html" class="nav-link">团队介绍</a></li>
+                <li><a href="ai.html" class="nav-link">AI技巧库</a></li>
+                <li><a href="quiz.html" class="nav-link">AI小测验</a></li>
+                <li><a href="summary.html" class="nav-link">实践总结</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 轮播图区域 -->
+    <div class="hero-carousel">
+        <div class="carousel-container" id="carouselContainer">
+            <!-- 轮播项由JS生成 -->
+        </div>
+        
+        <!-- 左右箭头 -->
+        <button class="carousel-arrow carousel-prev" id="carouselPrev" onclick="prevSlide()">
+            <span>‹</span>
+        </button>
+        <button class="carousel-arrow carousel-next" id="carouselNext" onclick="nextSlide()">
+            <span>›</span>
+        </button>
+        
+        <!-- 指示点 -->
+        <div class="carousel-dots" id="carouselDots">
+            <!-- 由JS生成 -->
+        </div>
+    </div>
+
+    <!-- 数据统计 -->
+    <div class="section stats-section">
+        <div class="container">
+            <h2 class="section-title reveal">实践成果 <span class="title-line"></span></h2>
+            <p class="section-subtitle reveal">用数字见证我们的足迹</p>
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">团队成员</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">实践活动</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">📍</div>
+                    <div class="stat-number" data-target="7">0</div>
+                    <div class="stat-label">覆盖地区</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-number" data-target="200">0</div>
+                    <div class="stat-label">服务人次</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">📢</div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">宣传报道</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-icon">📷</div>
+                    <div class="stat-number" data-target="59">0</div>
+                    <div class="stat-label">精彩瞬间</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/carousel.js"></script>
+    <script>
+        initStatsCounter();
+        initHomeCarousel();
+    </script>
+</body>
+</html>

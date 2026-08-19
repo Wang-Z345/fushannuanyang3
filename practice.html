@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实践风采 · 浮山暖阳</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+.page-header{height:66.67vh;min-height:500px;background-size:cover;background-position:center;position:relative;margin:0;margin-top:68px;display:block!important;align-items:unset!important;justify-content:unset!important;text-align:left!important}
+.page-header::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,0.6) 100%)!important;top:0!important;right:0!important;width:100%!important;height:100%!important;border-radius:0!important}
+.page-header::after{display:none!important}
+.page-header .container{position:absolute!important;z-index:1!important;text-align:left!important;left:80px!important;bottom:72px!important;max-width:none!important;width:auto!important;margin:0!important;padding:0!important}
+.page-title{color:#fff;font-size:3rem;font-weight:700;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.page-subtitle{color:#fff;opacity:.9;font-size:1.15rem;margin:0;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">浮山暖阳</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="practice.html" class="nav-link active">实践风采</a></li>
+                <li><a href="team.html" class="nav-link">团队介绍</a></li>
+                <li><a href="ai.html" class="nav-link">AI技巧库</a></li>
+                <li><a href="quiz.html" class="nav-link">AI小测验</a></li>
+                <li><a href="summary.html" class="nav-link">实践总结</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <div class="page-header" style="background-image:url('images/practice.jpg.jpg');">
+        <div class="container">
+            <h1 class="page-title">实践风采</h1>
+            <p class="page-subtitle">10项活动 · 3大人群 · 59个精彩瞬间</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 分类筛选 -->
+        <div class="filter-tabs reveal">
+            <button class="filter-btn active" data-filter="all">全部活动</button>
+            <button class="filter-btn" data-filter="youth">🧒 青少年组</button>
+            <button class="filter-btn" data-filter="elderly">👴 老年组</button>
+            <button class="filter-btn" data-filter="community">👨‍💼 基层组</button>
+        </div>
+
+        <!-- 活动列表 -->
+        <div id="practice-list">
+            <!-- 动态生成 -->
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <span class="logo-text">浮山暖阳</span>
+                    </div>
+                    <p>青岛大学计算机科学技术学院<br>2026年暑期"三下乡"社会实践团</p>
+                </div>
+                <div class="footer-right">
+                    <p>投身社会服务 · AI赋能基层惠民</p>
+                    <p class="footer-copyright">© 2026 浮山暖阳实践团</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 照片灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <button class="lightbox-prev" onclick="prevPhoto()">‹</button>
+            <img id="lightbox-img" src="" alt="">
+            <button class="lightbox-next" onclick="nextPhoto()">›</button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <span>↑</span>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script>
+        initPracticeList();
+    </script>
+</body>
+</html>
