@@ -121,5 +121,15 @@
     </button>
 
     <script src="js/main.js"></script>
+    <script>
+        function toggleMenu() {
+            var hamburger = document.getElementById('hamburger');
+            var navMenu = document.getElementById('navMenu');
+            if (hamburger && navMenu) {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            }
+        }
+    </script>
 </body>
 </html>
