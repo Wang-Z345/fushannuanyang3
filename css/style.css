@@ -268,14 +268,16 @@ ul {
     gap: 5px;
     cursor: pointer;
     padding: var(--space-2);
+    z-index: 1001;
 }
 
 .hamburger span {
-    width: 22px;
-    height: 2px;
-    background: var(--color-text-1);
-    border-radius: var(--radius-full);
+    width: 26px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
     transition: var(--transition-base);
+    display: block;
 }
 
 /* ========== 4. 页面头部 ========== */
@@ -1596,58 +1598,6 @@ ul {
     
     .stats-grid {
         grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-    }
-    
-    .hamburger {
-        display: flex;
-    }
-    
-    .photo-wall {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .member-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .style-buttons {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .hero-carousel {
-        height: 400px;
-    }
-    
-    .carousel-slide-title {
-        font-size: 1.75rem;
-    }
-    
-    .carousel-arrow {
-        width: 44px;
-        height: 44px;
-        font-size: 24px;
-    }
-    
-    .carousel-prev {
-        left: 16px;
-    }
-    
-    .carousel-next {
-        right: 16px;
     }
 }
 
