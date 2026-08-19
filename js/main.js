@@ -1094,31 +1094,11 @@ function restartQuiz() {
 }
 
 // ========== 汉堡菜单 ==========
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    
+function toggleMenu() {
+    var hamburger = document.getElementById('hamburger');
+    var navMenu = document.getElementById('navMenu');
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        
-        // 点击导航链接后关闭菜单
-        const navLinks = navMenu.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-        
-        // 点击页面其他地方关闭菜单
-        document.addEventListener('click', function(e) {
-            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
     }
-});
+}
