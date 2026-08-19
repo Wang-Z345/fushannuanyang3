@@ -36,7 +36,7 @@
                 <li><a href="quiz.html" class="nav-link">AI小测验</a></li>
                 <li><a href="summary.html" class="nav-link">实践总结</a></li>
             </ul>
-            <div class="hamburger" id="hamburger" onclick="var h=document.getElementById('hamburger');var m=document.getElementById('navMenu');h.classList.toggle('active');m.classList.toggle('active');">
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -103,14 +103,6 @@
 
     <script src="js/main.js"></script>
     <script>
-        function toggleMenu() {
-            var hamburger = document.getElementById('hamburger');
-            var navMenu = document.getElementById('navMenu');
-            if (hamburger && navMenu) {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            }
-        }
         initPracticeList();
     </script>
 </body>

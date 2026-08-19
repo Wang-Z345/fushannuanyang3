@@ -336,8 +336,27 @@ function initMobileMenu() {
     const navMenu = document.getElementById('navMenu');
     if (!hamburger || !navMenu) return;
     
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+    });
+    
+    // 点击菜单项关闭菜单
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+    
+    // 点击页面其他地方关闭菜单
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
     });
 }
 
@@ -1093,12 +1112,4 @@ function restartQuiz() {
     startQuiz();
 }
 
-// ========== 汉堡菜单 ==========
-function toggleMenu() {
-    var hamburger = document.getElementById('hamburger');
-    var navMenu = document.getElementById('navMenu');
-    if (hamburger && navMenu) {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    }
-}
+
