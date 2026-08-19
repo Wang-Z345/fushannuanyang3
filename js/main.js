@@ -463,55 +463,6 @@ function initTeamMembers() {
     renderTeamGroup('team-safety', teamMembers.safety);
     renderTeamGroup('team-logistics', teamMembers.logistics);
     
-    // 强制修改成员卡片样式，适配手机端
-    const applyMobileFix = () => {
-        const cards = document.querySelectorAll('.member-card');
-        cards.forEach(card => {
-            card.style.setProperty('height', 'auto', 'important');
-            card.style.setProperty('min-height', '160px', 'important');
-            card.style.setProperty('overflow', 'visible', 'important');
-            
-            const inner = card.querySelector('.member-card-inner');
-            if (inner) {
-                inner.style.setProperty('position', 'relative', 'important');
-                inner.style.setProperty('width', '100%', 'important');
-                inner.style.setProperty('height', 'auto', 'important');
-                inner.style.setProperty('min-height', '160px', 'important');
-                inner.style.setProperty('transform', 'none', 'important');
-            }
-            
-            const front = card.querySelector('.member-front');
-            if (front) {
-                front.style.setProperty('position', 'relative', 'important');
-                front.style.setProperty('width', '100%', 'important');
-                front.style.setProperty('height', 'auto', 'important');
-                front.style.setProperty('min-height', '160px', 'important');
-                front.style.setProperty('padding', '12px 6px', 'important');
-                front.style.setProperty('box-sizing', 'border-box', 'important');
-                front.style.setProperty('transform', 'none', 'important');
-                front.style.setProperty('backface-visibility', 'visible', 'important');
-            }
-            
-            const back = card.querySelector('.member-back');
-            if (back) {
-                back.style.setProperty('display', 'none', 'important');
-            }
-            
-            const avatar = card.querySelector('.member-avatar');
-            if (avatar) {
-                avatar.style.setProperty('width', '36px', 'important');
-                avatar.style.setProperty('height', '36px', 'important');
-                avatar.style.setProperty('font-size', '0.9rem', 'important');
-                avatar.style.setProperty('margin-bottom', '6px', 'important');
-            }
-        });
-    };
-    
-    applyMobileFix();
-    // 延迟再次应用，确保所有元素都已渲染
-    setTimeout(applyMobileFix, 100);
-    setTimeout(applyMobileFix, 500);
-    
     initReveal();
 }
 
@@ -519,33 +470,22 @@ function renderTeamGroup(containerId, members) {
     const container = document.getElementById(containerId);
     if (!container) return;
     
-    // 手机端内联样式 - 直接在 HTML 中设置，确保优先级最高
-    const cardStyle = 'height:auto!important;min-height:auto!important;overflow:visible!important';
-    const innerStyle = 'position:relative!important;width:100%!important;height:auto!important;transform:none!important';
-    const frontStyle = 'position:relative!important;width:100%!important;height:auto!important;padding:10px 6px!important;box-sizing:border-box!important;transform:none!important;backface-visibility:visible!important';
-    const backStyle = 'display:none!important';
-    const avatarStyle = 'width:32px!important;height:32px!important;font-size:0.8rem!important;margin-bottom:4px!important';
-    const h4Style = 'font-size:0.75rem!important;margin-bottom:2px!important;line-height:1.2!important';
-    const roleStyle = 'font-size:0.65rem!important;margin-bottom:2px!important';
-    const tagsStyle = 'gap:2px!important;margin-top:2px!important';
-    const tagStyle = 'font-size:0.55rem!important;padding:1px 3px!important';
-    
     let html = '';
     members.forEach(member => {
         const firstChar = member.name.charAt(0);
         html += `
-            <div class="member-card" style="${cardStyle}">
-                <div class="member-card-inner" style="${innerStyle}">
-                    <div class="member-front" style="${frontStyle}">
-                        <div class="member-avatar" style="${avatarStyle}">${firstChar}</div>
-                        <h4 style="${h4Style}">${member.name}</h4>
-                        <p class="member-role" style="${roleStyle}">${member.role}</p>
-                        <div class="member-tags" style="${tagsStyle}">
-                            <span class="member-tag" style="${tagStyle}">${member.grade}</span>
-                            <span class="member-tag" style="${tagStyle}">计算机学院</span>
+            <div class="member-card">
+                <div class="member-card-inner">
+                    <div class="member-front">
+                        <div class="member-avatar">${firstChar}</div>
+                        <h4>${member.name}</h4>
+                        <p class="member-role">${member.role}</p>
+                        <div class="member-tags">
+                            <span class="member-tag">${member.grade}</span>
+                            <span class="member-tag">计算机学院</span>
                         </div>
                     </div>
-                    <div class="member-back" style="${backStyle}">
+                    <div class="member-back">
                         <h4>${member.name}</h4>
                         <p>${member.desc}</p>
                     </div>
@@ -555,122 +495,6 @@ function renderTeamGroup(containerId, members) {
     });
     
     container.innerHTML = html;
-}
-
-// 应用修复到指定容器中的卡片
-function applyFixToCards(container) {
-    if (!container) return;
-    
-    const cards = container.querySelectorAll('.member-card');
-    cards.forEach(card => {
-        card.style.setProperty('height', 'auto', 'important');
-        card.style.setProperty('min-height', 'auto', 'important');
-        card.style.setProperty('overflow', 'visible', 'important');
-        
-        const inner = card.querySelector('.member-card-inner');
-        if (inner) {
-            inner.style.setProperty('position', 'relative', 'important');
-            inner.style.setProperty('width', '100%', 'important');
-            inner.style.setProperty('height', 'auto', 'important');
-            inner.style.setProperty('transform', 'none', 'important');
-        }
-        
-        const front = card.querySelector('.member-front');
-        if (front) {
-            front.style.setProperty('position', 'relative', 'important');
-            front.style.setProperty('width', '100%', 'important');
-            front.style.setProperty('height', 'auto', 'important');
-            front.style.setProperty('padding', '10px 6px', 'important');
-            front.style.setProperty('box-sizing', 'border-box', 'important');
-            front.style.setProperty('transform', 'none', 'important');
-            front.style.setProperty('backface-visibility', 'visible', 'important');
-        }
-        
-        const back = card.querySelector('.member-back');
-        if (back) {
-            back.style.setProperty('display', 'none', 'important');
-        }
-        
-        const avatar = card.querySelector('.member-avatar');
-        if (avatar) {
-            avatar.style.setProperty('width', '32px', 'important');
-            avatar.style.setProperty('height', '32px', 'important');
-            avatar.style.setProperty('font-size', '0.8rem', 'important');
-            avatar.style.setProperty('margin-bottom', '4px', 'important');
-        }
-        
-        const h4 = card.querySelector('h4');
-        if (h4) {
-            h4.style.setProperty('font-size', '0.75rem', 'important');
-            h4.style.setProperty('margin-bottom', '2px', 'important');
-            h4.style.setProperty('line-height', '1.2', 'important');
-        }
-        
-        const role = card.querySelector('.member-role');
-        if (role) {
-            role.style.setProperty('font-size', '0.65rem', 'important');
-            role.style.setProperty('margin-bottom', '2px', 'important');
-        }
-        
-        const tags = card.querySelector('.member-tags');
-        if (tags) {
-            tags.style.setProperty('gap', '2px', 'important');
-            tags.style.setProperty('margin-top', '2px', 'important');
-        }
-        
-        const tag = card.querySelectorAll('.member-tag');
-        tag.forEach(t => {
-            t.style.setProperty('font-size', '0.55rem', 'important');
-            t.style.setProperty('padding', '1px 3px', 'important');
-        });
-    });
-}
-
-function fixMobileMemberCards() {
-    if (window.innerWidth > 768) return;
-    
-    const cards = document.querySelectorAll('.member-card');
-    if (cards.length === 0) return;
-    
-    cards.forEach(card => {
-        card.style.setProperty('height', 'auto', 'important');
-        card.style.setProperty('min-height', '160px', 'important');
-        card.style.setProperty('overflow', 'visible', 'important');
-        
-        const inner = card.querySelector('.member-card-inner');
-        if (inner) {
-            inner.style.setProperty('position', 'relative', 'important');
-            inner.style.setProperty('width', '100%', 'important');
-            inner.style.setProperty('height', 'auto', 'important');
-            inner.style.setProperty('min-height', '160px', 'important');
-            inner.style.setProperty('transform', 'none', 'important');
-        }
-        
-        const front = card.querySelector('.member-front');
-        if (front) {
-            front.style.setProperty('position', 'relative', 'important');
-            front.style.setProperty('width', '100%', 'important');
-            front.style.setProperty('height', 'auto', 'important');
-            front.style.setProperty('min-height', '160px', 'important');
-            front.style.setProperty('padding', '12px 6px', 'important');
-            front.style.setProperty('box-sizing', 'border-box', 'important');
-            front.style.setProperty('transform', 'none', 'important');
-            front.style.setProperty('backface-visibility', 'visible', 'important');
-        }
-        
-        const back = card.querySelector('.member-back');
-        if (back) {
-            back.style.setProperty('display', 'none', 'important');
-        }
-        
-        const avatar = card.querySelector('.member-avatar');
-        if (avatar) {
-            avatar.style.setProperty('width', '36px', 'important');
-            avatar.style.setProperty('height', '36px', 'important');
-            avatar.style.setProperty('font-size', '0.9rem', 'important');
-            avatar.style.setProperty('margin-bottom', '6px', 'important');
-        }
-    });
 }
 
 function toggleGroup(groupName) {

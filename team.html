@@ -4,20 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>团队介绍 · 浮山暖阳</title>
-    <link rel="stylesheet" href="css/style.css?v=20250819v2">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-/* 强制覆盖成员卡片样式 - 解决手机端显示问题 */
-.member-card { height: auto !important; min-height: 160px !important; overflow: visible !important; }
-.member-card-inner { position: relative !important; width: 100% !important; height: auto !important; min-height: 160px !important; transform: none !important; }
-.member-front, .member-back { position: relative !important; width: 100% !important; height: auto !important; min-height: 160px !important; backface-visibility: visible !important; }
-.member-back { display: none !important; }
-.member-card:hover .member-card-inner { transform: none !important; }
-.member-avatar { width: 36px !important; height: 36px !important; font-size: 0.9rem !important; margin-bottom: 6px !important; }
-.member-front h4 { font-size: 0.8rem !important; margin-bottom: 3px !important; line-height: 1.2 !important; }
-.member-role { font-size: 0.7rem !important; margin-bottom: 3px !important; line-height: 1.2 !important; }
-.member-tags { gap: 3px !important; margin-top: 4px !important; }
-.member-tag { font-size: 0.6rem !important; padding: 1px 4px !important; }
-
 /* 桌面端基础样式 */
 .mentor-card{display:flex;gap:24px;align-items:center;background:#fff;padding:40px;border-radius:24px;max-width:800px;margin:0 auto 60px}
 .mentor-avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#FF7A45,#3CB8A9);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -58,16 +46,6 @@
     .mentor-card { flex-direction: column; text-align: center; padding: 24px 16px; }
     .mentor-avatar { width: 80px; height: 80px; }
     .team-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .member-card { height: auto !important; min-height: 160px !important; }
-    .member-card-inner { position: relative !important; width: 100% !important; height: auto !important; min-height: 160px !important; }
-    .member-front { position: relative !important; width: 100% !important; height: auto !important; min-height: 160px !important; padding: 12px 6px !important; box-sizing: border-box !important; }
-    .member-back { display: none !important; }
-    .member-card:hover .member-card-inner { transform: none !important; }
-    .member-avatar { width: 36px !important; height: 36px !important; font-size: 0.9rem !important; margin-bottom: 6px !important; }
-    .member-front h4 { font-size: 0.8rem !important; margin-bottom: 3px !important; line-height: 1.2 !important; }
-    .member-role { font-size: 0.7rem !important; margin-bottom: 3px !important; line-height: 1.2 !important; }
-    .member-tags { gap: 3px !important; margin-top: 4px !important; }
-    .member-tag { font-size: 0.6rem !important; padding: 1px 4px !important; }
     .member-group-header { padding: 12px 14px; }
     .group-left h4 { font-size: 1rem; }
     .member-group-content { padding: 10px; }
@@ -313,103 +291,10 @@
         <span>↑</span>
     </button>
 
-    <script src="js/main.js?v=20250819"></script>
+    <script src="js/main.js"></script>
     <script>
-        // 初始化团队成员
-        try {
-            if (typeof initTeamMembers === 'function') {
-                initTeamMembers();
-            }
-            if (typeof initGroupPhotos === 'function') {
-                initGroupPhotos();
-            }
-        } catch (e) {
-            console.error('Error initializing team members:', e.message);
-        }
-        
-        // 强制修改成员卡片样式
-        function applyFix() {
-            const cards = document.querySelectorAll('.member-card');
-            if (cards.length === 0) return;
-            
-            cards.forEach(card => {
-                card.style.setProperty('height', 'auto', 'important');
-                card.style.setProperty('min-height', 'auto', 'important');
-                card.style.setProperty('overflow', 'visible', 'important');
-                
-                const inner = card.querySelector('.member-card-inner');
-                if (inner) {
-                    inner.style.setProperty('position', 'relative', 'important');
-                    inner.style.setProperty('width', '100%', 'important');
-                    inner.style.setProperty('height', 'auto', 'important');
-                    inner.style.setProperty('transform', 'none', 'important');
-                }
-                
-                const front = card.querySelector('.member-front');
-                if (front) {
-                    front.style.setProperty('position', 'relative', 'important');
-                    front.style.setProperty('width', '100%', 'important');
-                    front.style.setProperty('height', 'auto', 'important');
-                    front.style.setProperty('padding', '10px 6px', 'important');
-                    front.style.setProperty('box-sizing', 'border-box', 'important');
-                    front.style.setProperty('transform', 'none', 'important');
-                    front.style.setProperty('backface-visibility', 'visible', 'important');
-                }
-                
-                const back = card.querySelector('.member-back');
-                if (back) {
-                    back.style.setProperty('display', 'none', 'important');
-                }
-                
-                const avatar = card.querySelector('.member-avatar');
-                if (avatar) {
-                    avatar.style.setProperty('width', '32px', 'important');
-                    avatar.style.setProperty('height', '32px', 'important');
-                    avatar.style.setProperty('font-size', '0.8rem', 'important');
-                    avatar.style.setProperty('margin-bottom', '4px', 'important');
-                }
-                
-                const h4 = card.querySelector('h4');
-                if (h4) {
-                    h4.style.setProperty('font-size', '0.75rem', 'important');
-                    h4.style.setProperty('margin-bottom', '2px', 'important');
-                    h4.style.setProperty('line-height', '1.2', 'important');
-                }
-                
-                const role = card.querySelector('.member-role');
-                if (role) {
-                    role.style.setProperty('font-size', '0.65rem', 'important');
-                    role.style.setProperty('margin-bottom', '2px', 'important');
-                }
-                
-                const tags = card.querySelector('.member-tags');
-                if (tags) {
-                    tags.style.setProperty('gap', '2px', 'important');
-                    tags.style.setProperty('margin-top', '2px', 'important');
-                }
-                
-                const tag = card.querySelectorAll('.member-tag');
-                tag.forEach(t => {
-                    t.style.setProperty('font-size', '0.55rem', 'important');
-                    t.style.setProperty('padding', '1px 3px', 'important');
-                });
-            });
-        }
-        
-        // 立即应用
-        applyFix();
-        
-        // 持续应用，确保修复生效
-        let fixCount = 0;
-        const fixInterval = setInterval(() => {
-            applyFix();
-            fixCount++;
-            if (fixCount >= 20) {
-                clearInterval(fixInterval);
-            }
-        }, 100);
-        
-        console.log('Team page scripts initialized');
+        initTeamMembers();
+        initGroupPhotos();
     </script>
 </body>
 </html>
